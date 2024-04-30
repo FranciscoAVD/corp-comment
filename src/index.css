@@ -32,9 +32,7 @@ button {
   outline: initial; /* create alternative for focus state */
   background-color: initial;
 }
-button:focus{
-  outline: 1px solid #121618;
-}
+
 
 /* UTILITIES */
 .u-bold {
@@ -496,6 +494,9 @@ form button span::selection {
   color: #6c6f76;
   font-size: 11px;
   margin-top: -1px;
+}
+.feedback > button:focus{
+  outline: 1px solid #121618;
 }
 
 /* HASHTAGS */
