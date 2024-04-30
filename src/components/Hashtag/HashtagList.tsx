@@ -1,13 +1,17 @@
-import { useFeedbackItemsStore } from "../../stores/feedbackItemsStore";
+
+import { useQuery } from "convex/react";
 import HashtagItem from "./HashtagItem";
+import { api } from "../../../convex/_generated/api";
+import { useCompanyStore } from "../../stores/company-store";
 
 export default function HashtagList() {
-  const companyList = useFeedbackItemsStore(state => state.getCompanyList());
-  const selectCompany = useFeedbackItemsStore(state => state.selectCompany);
+  const companies = useQuery(api.company.getCompanies);
+  const setCompany = useCompanyStore(state => state.setActiveCompany)
+  
   return (
     <ul className="hashtags">
-      {companyList.map((company) => (
-        <HashtagItem key={company} company={company} selectCompany={selectCompany}/>
+      {companies?.map((company) => (
+        <HashtagItem key={company.company} company={company.company} id={company._id} selectCompany={setCompany}/>
       ))}
     </ul>
   );

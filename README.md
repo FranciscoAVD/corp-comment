@@ -1,13 +1,14 @@
-# Insight Stream
+# CorpComment
 
 ## What is it?
 
-Insight Stream is an application where users can post comments to a dashboard in real time about different companies.
+CorpComment is an application where users can post comments to a dashboard in real time about different companies.
 
 ## Technologies
 
-Insight Stream is built using:
+CorpComment is built using:
 
 - React
-- Zustand
+- date-fns
 - Convex
+- Zustand

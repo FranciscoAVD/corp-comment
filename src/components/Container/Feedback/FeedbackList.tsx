@@ -1,22 +1,22 @@
 import Spinner from "./Spinner";
 import FeedbackItem from "./FeedbackItem";
-
-import { useFeedbackItemsStore } from "../../../stores/feedbackItemsStore";
-
+import { useQuery } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
+import { useCompanyStore } from "../../../stores/company-store";
 
 export default function FeedbackList() {
-  const filteredFeedbackItems = useFeedbackItemsStore((state) => state.getFilteredFeedbackItems());
-  const isLoading = useFeedbackItemsStore((state) => state.isLoading);
-  const errorMessage = useFeedbackItemsStore((state) => state.errorMessage);
+  
+  const active = useCompanyStore(state => state.activeCompany)
+  const comments = useQuery(api.comment.getComments, {company: active});
   return (
     <ol className="feedback-list">
-      {isLoading && <Spinner />}
-
-      {errorMessage.length > 0 && errorMessage}
-
-      {filteredFeedbackItems.map((item) => (
-        <FeedbackItem key={item.id} feedbackItem={item} />
-      ))}
+      {comments ? (
+        comments.map((comment) => (
+          <FeedbackItem key={comment._id} feedbackItem={comment} />
+        ))
+      ) : (
+        <Spinner />
+      )}
     </ol>
   );
 }

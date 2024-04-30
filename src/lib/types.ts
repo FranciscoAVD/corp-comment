@@ -1,8 +1,11 @@
+import { Id } from "../../convex/_generated/dataModel"
+
 export type TFeedbackItem = {
-    id: number,
-    upvoteCount: number,
-    badgeLetter: string,
+    _id: Id<"comment">,
+    upvote_count: number,
+    badge_letter: string,
     company: string,
     text: string,
-    daysAgo: number
+    _creationTime: number;
+    companyId: Id<"company">
   }
