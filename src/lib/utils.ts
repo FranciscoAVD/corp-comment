@@ -19,5 +19,5 @@ function getCompanyBadge(company: string): string {
 
 export function daysBetween(day: number): number {
     const today = new Date()
-    return differenceInCalendarDays(day, today);
+    return differenceInCalendarDays(today, day);
 }
